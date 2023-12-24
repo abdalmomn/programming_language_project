@@ -1,2 +1,2 @@
 # programming_language_project
-Medicinies warehouse and pharmacy applecation
+Medicinies warehouse and pharmacy application
