@@ -14,9 +14,11 @@ class Medicine extends Model
         'tradeName',
         'category',
         'theManufactureCompany',
-        'quantityAvailable',
+        'quantity',
         'validity',
         'price',
     ];
-    
+    public function category(){
+        $this->belongsTo(category::class);
+    }
 }

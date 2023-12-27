@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\category;
 use App\Models\Medicine;
+use App\Models\Order;
+use App\Models\status;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class MedicineController extends Controller
 {
@@ -26,27 +29,24 @@ class MedicineController extends Controller
     
     public function insert(Request $request){
     $medicine = Medicine::Create($request->all());
-    
-    category::insert(['categories'=>$request->category]);
-    
-    
-    $duplicated = DB::table('categories')
-            ->select('categories', DB::raw('count(`categories`) as occurences'))
-            ->groupBy('categories')
-            ->having('occurences', '>', 1)
-            ->get();
-foreach ($duplicated as $duplicate) {
-   // Get the row you don't want to delete.
-    $dontDeleteThisRow = category::where('categories', $duplicate->categories)->first();
-
-   // Delete all rows except the one we fetched above.
-    category::where('categories', $duplicate->categories)->where('id', '!=', $dontDeleteThisRow->id)->delete();
-}
-
     return response()->json([
     'message' => 'inserted successfully',
     'medicine ' => $medicine
     ]);
+    }
+    
+    public function insert_categories(Request $request){
+    $category = category::create($request->all());
+    
+    return response()->json([
+    'message' => 'inserted successfully!',
+    'data' => $category,
+    ]);
+    }
+    
+    public function showCategories(){
+    
+        
     }
     
     public function details( request $request){
@@ -57,11 +57,63 @@ foreach ($duplicated as $duplicate) {
     
     public function search(request $request){
         $search=$request->search;
-      // $data=Medicine::where(function($query) use ($search){$query->where('TradeName','like',"%$search%")->get();});
         $data=Medicine::where('TradeName','like','%'. $search.'%')->get();
         return response()->json([
             ' mess'=>$data,
-            // ->orwhere('Category','like','%'.$search.'%')
             ]);
+    }
+    
+    public function order(Request $request)
+{
+    $validator = Validator::make($request->all() , [
+        'tradeName' => 'required',
+        'quantity' => 'required|integer|min:1',
+    ]);
+    if ($validator->fails()) {
+        return response()->json($validator->errors() , 422);
+    }
+    $medicine = $request->only('tradeName', 'quantity');
+
+   // Check if the required quantity is available in the warehouse
+    $warehouse_data = Medicine::where('tradeName', $medicine['tradeName'])->first();
+
+    if ($warehouse_data && $warehouse_data->quantity >= $medicine['quantity']) {
+       // if quantity is available, reduce the quantity from the warehouse
+        $warehouse_data->decrement('quantity', $medicine['quantity']);
+
+       // Check if there is an existing order for the same tradeName
+        $existingOrder = Order::where('tradeName', $medicine['tradeName'])->latest()->first();
+
+        if ($existingOrder) {
+           // If there is an existing order, increment its quantity
+            $existingOrder->increment('quantity', $medicine['quantity']);
+        } else {
+           // If there isn't an existing order, create a new one
+            Order::create($medicine);
+        }
+    } else if(!$warehouse_data){
+       // if quantity is not available, return a response to the pharmacist
+        return response()->json([
+            'error' => 'The medicine of ' . $medicine['tradeName'] . ' is not available in the warehouse.'
+        ]);
+    }else{
+        return response()->json([
+            'error' => 'The quantity of ' . $medicine['tradeName'] . ' is not available in the warehouse.'
+        ]);
+    }
+
+    return response()->json([
+        'success' => 'order has been added to cart'
+    ]);
+}
+
+    
+    public function showOrderInCart(){
+        $status = status::find(1);
+            $order = Order::get([
+                'tradeName' ,
+                'quantity'
+            ]);
+        return [$order , $status];
     }
 }

@@ -8,8 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
+    protected $fillable = ['tradeName' , 'quantity'];
     
     public function statuses(){
-        $this->hasMany(Status::class);
-    }
+        $this->hasMany(status::class);
+        
+        }
 }

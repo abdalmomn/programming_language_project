@@ -17,7 +17,7 @@ return new class extends Migration
             $table -> string('tradeName');
             $table -> string('category');
             $table -> string('theManufactureCompany');
-            $table -> integer('quantityAvailable');
+            $table -> integer('quantity');
             $table -> integer('validity');
             $table -> integer('price');
             $table->timestamps();

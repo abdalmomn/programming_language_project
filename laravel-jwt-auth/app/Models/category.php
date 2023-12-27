@@ -10,5 +10,7 @@ class category extends Model
     use HasFactory;
     protected $fillable = ['categories'];
     
-    
+    public function Medicines(){
+        $this->hasMany(Medicine::class);
+    }
 }
