@@ -94,4 +94,11 @@ class AuthController extends Controller
     public function index(){
     return response('home page');
     }
+    
+    public function showUserInformation(){
+        return response()->json([
+        'name' => auth()->user()->name,
+        'phone' => auth()->user()->phone,
+        ]);
+    }
 }
