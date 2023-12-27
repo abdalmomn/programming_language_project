@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::prefix('admin')->middleware(['auth:api' , 'isAdmin'])->group(function($router){
     Route::post('/admin_login',[AuthController::class,'warehouse_login']);
+    Route::post('/insert' , [MedicineController::class , 'insert']); 
         });
         
         
@@ -29,7 +30,6 @@ Route::prefix('admin')->middleware(['auth:api' , 'isAdmin'])->group(function($ro
             Route::post('/register', [AuthController::class, 'pharmacy_register']);
         });
         
-        Route::post('/insert' , [MedicineController::class , 'insert']); 
         Route::get('/details' , [MedicineController::class , 'details']); 
         Route::get('/search' , [MedicineController::class , 'search']); 
         Route::get('/showMedicines' , [MedicineController::class , 'showMedicines']); 

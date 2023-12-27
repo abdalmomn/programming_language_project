@@ -11,7 +11,7 @@ class Order extends Model
     protected $fillable = ['tradeName' , 'quantity'];
     
     public function statuses(){
-        $this->hasMany(status::class);
+        $this->belongsTo(status::class);
         
         }
 }

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table -> string('tradeName');
             $table -> string('quantity');
-            $table-> foreignId('status_id')->references('id')->on('statuses');
+            $table->foreignId('status_id')->constrained('statuses')->cascadeOnDelete();
             $table->timestamps();
         });
     }

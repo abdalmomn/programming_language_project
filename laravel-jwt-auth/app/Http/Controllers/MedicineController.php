@@ -134,15 +134,23 @@ class MedicineController extends Controller
     //     ]);
     // }
     public function adminOrderSent(Request $request){
-        $status = new Order;
-        $order = Order::where('status_id' , 'id')->get([
-            'tradeName' ,
-            'quantity'
-        ]);
-        return response()->json([
-        'order' => $order,
-        'status' => $status->status_id,
-        ]);
+    
+    
+    $orders = Order::all();
+
+foreach ($orders as $order) {
+    $order->status->status; // Access the order status
+}
+
+        // $status = new Order;
+        // $order = Order::where('status_id' , 'id')->get([
+        //     'tradeName' ,
+        //     'quantity'
+        // ]);
+        // return response()->json([
+        // 'order' => $order,
+        // 'status' => $status->status_id,
+        // ]);
         
         // $status = new Order();
         
