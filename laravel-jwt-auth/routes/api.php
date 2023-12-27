@@ -35,3 +35,5 @@ Route::prefix('admin')->middleware(['auth:api' , 'isAdmin'])->group(function($ro
         Route::get('/showMedicines' , [MedicineController::class , 'showMedicines']); 
         Route::post('/order' , [MedicineController::class , 'order']); 
         Route::get('/showOrder' , [MedicineController::class , 'showOrderInCart']); 
+        Route::get('/sending' , [MedicineController::class , 'adminOrderIsSending']); 
+        Route::get('/sent' , [MedicineController::class , 'adminOrderSent']); 

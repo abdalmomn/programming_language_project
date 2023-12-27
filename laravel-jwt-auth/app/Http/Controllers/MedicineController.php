@@ -109,11 +109,60 @@ class MedicineController extends Controller
 
     
     public function showOrderInCart(){
-        $status = status::find(1);
+        // $status = status::find(1);
+        $status = new status();
             $order = Order::get([
+            
                 'tradeName' ,
                 'quantity'
             ]);
-        return [$order , $status];
+        return response()->json([
+        'order' => $order,
+        'status' => $status->status = 'in progress'
+        ]);
     }
+    // public function adminOrderIsSending(){
+        
+    //     $status = new status();
+    //         $order = Order::get([
+    //             'tradeName' ,
+    //             'quantity'
+    //         ]);
+    //     return response()->json([
+    //     'order' => $order,
+    //     'status' => $status->status = 'sending'
+    //     ]);
+    // }
+    public function adminOrderSent(Request $request){
+        $status = new Order;
+        $order = Order::where('status_id' , 'id')->get([
+            'tradeName' ,
+            'quantity'
+        ]);
+        return response()->json([
+        'order' => $order,
+        'status' => $status->status_id,
+        ]);
+        
+        // $status = new Order();
+        
+        // if ($status->status_id == '1') {
+        //     return response()->json([
+        //     'order' => $order,
+        //     'status' => 'the order is sending'
+        //     ]);
+        // }
+        // else if ($status->status == 'sent') {
+        //     return response()->json([
+        //     'order' => $order,
+        //     'status' => 'the order has been sent'
+        //     ]);
+        // }else {
+        //     return response()->json([
+        //     'order' => $order,
+        //     'status' => 'the order in processing'
+        //     ]);
+        // }
+    }
+    //idea: set 2 method ,one method for every status for admin and I already have a default status
 }
