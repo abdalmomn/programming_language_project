@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class orderStatus extends Model
 {
     use HasFactory;
     protected $table = 'orders';
     protected $primaryKey = 'id';
-    protected $fillable = ['tradeName' , 'quantity'];
+    protected $fillable = ['status' , 'order_id'];
     
-    public function orderStatus(){
-        return $this->hasMany(orderStatus::class);
+    public function order(){
+        return $this->belongsTo(Order::class);
     }
 }

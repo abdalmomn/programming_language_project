@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Order;
 use App\Models\role;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -33,7 +34,6 @@ class UserSeeder extends Seeder
         'phone' => '0911122244' ,
         'password' => Hash::make('12345678'),
         ]);
-        
         
     }
     

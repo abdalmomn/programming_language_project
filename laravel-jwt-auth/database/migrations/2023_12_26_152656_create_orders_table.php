@@ -15,8 +15,15 @@ return new class extends Migration
             $table->id();
             $table -> string('tradeName');
             $table -> string('quantity');
-            $table->foreignId('status_id')->constrained('statuses')->cascadeOnDelete();
+            $table -> string('status')->default('in processing');
+            $table -> string('purchase')->default('Unpaid');
             $table->timestamps();
+        });
+        
+        Schema::create('order_status' , function(Blueprint $table) {
+        $table->bigIncrements('id');
+        $table->string('status');
+        $table->timestamps();
         });
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\category;
 use App\Models\Medicine;
 use App\Models\Order;
+use App\Models\orderStatus;
 use App\Models\status;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
@@ -16,11 +17,12 @@ class MedicineController extends Controller
 
     public function showMedicines(){
         $medicine = Medicine::get([
+        'id',
         'theScientificName' ,
         'tradeName',
         'category',
         'theManufactureCompany',
-        'quantityAvailable',
+        'quantity',
         'validity',
         'price',
         ]);
@@ -35,36 +37,61 @@ class MedicineController extends Controller
     ]);
     }
     
-    public function insert_categories(Request $request){
-    $category = category::create($request->all());
-    
-    return response()->json([
-    'message' => 'inserted successfully!',
-    'data' => $category,
-    ]);
+    public function showCategory(Request $request){
+    $categories = category::create($request->all());
+    foreach ($categories as $category) {
+        $medicine = Medicine::where('category' , 'like' , '%'. $category.'%')->get('tradeName');
+    }
+        return response()->json([
+            'data' => [$categories ,$medicine],
+        ]);
     }
     
-    public function showCategories(){
-    
-        
-    }
-    
+    // public function showCategory(Request $request){
+    //     $med = new Medicine();
+    //     $medicine = Medicine::where('category' , 'like' , 'ادوية ضغط الدم')->get('tradeName');
+    //     return response()->json([
+    //     'data' => $medicine
+    //     ]);
+    // }
     public function details( request $request){
-    $det=Medicine::where('id',$request->id)->get();
+    $det=Medicine::where('id',$request->id)->get([
+        'theScientificName' ,
+        'tradeName',
+        'category',
+        'theManufactureCompany',
+        'quantity',
+        'validity',
+        'price',
+    ]);
     return $det;
     }
     
     
     public function search(request $request){
         $search=$request->search;
-        $data=Medicine::where('TradeName','like','%'. $search.'%')->get();
+        $data=Medicine::where('TradeName' , 'like','%'. $search.'%')->get([
+        'theScientificName' ,
+        'tradeName',
+        'category',
+        'theManufactureCompany',
+        'quantity',
+        'validity',
+        'price',
+        ]);
         return response()->json([
-            ' mess'=>$data,
+            'data' => $data,
             ]);
     }
     
+    
+    
+    
+    
+    
+    
     public function order(Request $request)
-{
+    {
     $validator = Validator::make($request->all() , [
         'tradeName' => 'required',
         'quantity' => 'required|integer|min:1',
@@ -80,7 +107,6 @@ class MedicineController extends Controller
     if ($warehouse_data && $warehouse_data->quantity >= $medicine['quantity']) {
        // if quantity is available, reduce the quantity from the warehouse
         $warehouse_data->decrement('quantity', $medicine['quantity']);
-
        // Check if there is an existing order for the same tradeName
         $existingOrder = Order::where('tradeName', $medicine['tradeName'])->latest()->first();
 
@@ -108,69 +134,74 @@ class MedicineController extends Controller
 }
 
     
-    public function showOrderInCart(){
-        // $status = status::find(1);
-        $status = new status();
-            $order = Order::get([
-            
-                'tradeName' ,
-                'quantity'
+    public function showOrderInCart($id){
+        $order = Order::select([
+        'tradeName',
+        'quantity',
+        'status'
+        ])->find($id);
+        if ($order) {
+            return response()->json([
+            "data" => $order
             ]);
+        }else {
+            return response()->json([
+            "message" => "the order is not found in our data",  
+            ]);
+        }
+    }
+    //show order by id one by one or all orders in one time or both
+    
+    
+    
+    
+//     public function updateOrderStatus($id, $status){
+//     $order = Order::find($id);
+//     if ($order) {
+//         $order->status = $status;
+//         $order->save();
+//         return response()->json([
+//             "message" => "the order status has been updated",  
+//         ]);
+//     }else {
+//         return response()->json([
+//             "message" => "the order is not found in our data",  
+//         ]);
+//     }
+// }
+
+    public function updateOrderStatusAdmin($id, $status){
+    $order = Order::find($id);
+    if ($order) {
+        $order->status = $status;
+        $order->save();
         return response()->json([
-        'order' => $order,
-        'status' => $status->status = 'in progress'
+            "message" => "the order status has been updated by admin",  
+        ]);
+    }else {
+        return response()->json([
+            "message" => "the order is not found in our data",  
         ]);
     }
-    // public function adminOrderIsSending(){
-        
-    //     $status = new status();
-    //         $order = Order::get([
-    //             'tradeName' ,
-    //             'quantity'
-    //         ]);
-    //     return response()->json([
-    //     'order' => $order,
-    //     'status' => $status->status = 'sending'
-    //     ]);
-    // }
-    public function adminOrderSent(Request $request){
-    
-    
-    $orders = Order::all();
-
-foreach ($orders as $order) {
-    $order->status->status; // Access the order status
+}
+    public function updatePaymentStatusAdmin($id, $status){
+    $order = Order::find($id);
+    if ($order) {
+        $order->purchase = $status;
+        $order->save();
+        return response()->json([
+            "message" => "the order status has been updated by admin",  
+        ]);
+    }else {
+        return response()->json([
+            "message" => "the order is not found in our data",  
+        ]);
+    }
 }
 
-        // $status = new Order;
-        // $order = Order::where('status_id' , 'id')->get([
-        //     'tradeName' ,
-        //     'quantity'
-        // ]);
-        // return response()->json([
-        // 'order' => $order,
-        // 'status' => $status->status_id,
-        // ]);
-        
-        // $status = new Order();
-        
-        // if ($status->status_id == '1') {
-        //     return response()->json([
-        //     'order' => $order,
-        //     'status' => 'the order is sending'
-        //     ]);
-        // }
-        // else if ($status->status == 'sent') {
-        //     return response()->json([
-        //     'order' => $order,
-        //     'status' => 'the order has been sent'
-        //     ]);
-        // }else {
-        //     return response()->json([
-        //     'order' => $order,
-        //     'status' => 'the order in processing'
-        //     ]);
-        // }
-    }
+    public function refreshData(){
+    $orders = Order::all();
+    return $orders;
+}
     //idea: set 2 method ,one method for every status for admin and I already have a default status
 }

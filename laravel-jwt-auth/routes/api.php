@@ -35,7 +35,8 @@ Route::prefix('admin')->middleware(['auth:api' , 'isAdmin'])->group(function($ro
         Route::get('/details' , [MedicineController::class , 'details']); 
         Route::get('/search' , [MedicineController::class , 'search']); 
         Route::get('/showMedicines' , [MedicineController::class , 'showMedicines']); 
+        Route::post('/showCategory' , [MedicineController::class , 'showCategory']); 
         Route::post('/order' , [MedicineController::class , 'order']); 
-        Route::get('/showOrder' , [MedicineController::class , 'showOrderInCart']); 
-        Route::get('/sending' , [MedicineController::class , 'adminOrderIsSending']); 
-        Route::get('/sent' , [MedicineController::class , 'adminOrderSent']); 
+        Route::get('/showOrder/{id}' , [MedicineController::class , 'showOrderInCart']); 
+        Route::put('/updateOrderStatus/{id}/status/{status}', [MedicineController::class , 'updateOrderStatusAdmin'])->where(['status' => 'pending|processing|completed|cancelled']);
+        Route::put('/updateOrderPayment/{id}/status/{status}', [MedicineController::class , 'updatePaymentStatusAdmin'])->where(['status' => 'paid|unpaid']);

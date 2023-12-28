@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\orderStatus;
 use App\Models\status;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class statusSeeder extends Seeder
 {
@@ -13,13 +15,13 @@ class statusSeeder extends Seeder
      */
     public function run(): void
     {
-        status::create([
+        DB::table('order_status')->insert([
         'status' => 'processing'
         ]);
-        status::create([
+        DB::table('order_status')->insert([
         'status' => 'sending'
         ]);
-        status::create([
+        DB::table('order_status')->insert([
         'status' => 'sent'
         ]);
     }
