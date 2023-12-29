@@ -8,11 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    protected $table = 'orders';
-    protected $primaryKey = 'id';
-    protected $fillable = ['tradeName' , 'quantity'];
+    // protected $table = 'orders';
+    // protected $primaryKey = 'id';
     
-    public function orderStatus(){
-        return $this->hasMany(orderStatus::class);
+    protected $fillable = ['tradeName' , 'quantity' , 'user_id'];
+    
+    // public function orderStatus(){
+    //     return $this->hasMany(orderStatus::class);
+    // }
+    public function User(){
+    return $this->belongsTo(User::class);
     }
 }

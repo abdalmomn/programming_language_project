@@ -25,6 +25,13 @@ class UserSeeder extends Seeder
         
         ]);
         User::create([
+        'name' => 'afaq ',
+        'phone' => '0953230952' ,
+        'password' => Hash::make('12345678'),
+        'role' => 'admin'
+        
+        ]);
+        User::create([
         'name' => 'abdalmomn ',
         'phone' => '0911122233' ,
         'password' => Hash::make('12345678'),

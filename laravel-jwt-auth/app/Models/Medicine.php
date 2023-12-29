@@ -17,8 +17,14 @@ class Medicine extends Model
         'quantity',
         'validity',
         'price',
+        'user_id'
     ];
-    public function category(){
-        $this->belongsTo(category::class);
+
+    public function user(){
+        $this->belongsTo(User::class);
     }
+
+    
+
+
 }

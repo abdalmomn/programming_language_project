@@ -17,14 +17,10 @@ return new class extends Migration
             $table -> string('quantity');
             $table -> string('status')->default('in processing');
             $table -> string('purchase')->default('Unpaid');
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
         });
-        
-        Schema::create('order_status' , function(Blueprint $table) {
-        $table->bigIncrements('id');
-        $table->string('status');
-        $table->timestamps();
-        });
+
     }
 
     /**

@@ -11,12 +11,16 @@ use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+
 
 class MedicineController extends Controller
 {
-
+    
     public function showMedicines(){
-        $medicine = Medicine::get([
+        $id = Auth::guard('api')->user()->id;
+        
+        $medicine = Medicine::where('user_id',$id)->get([
         'id',
         'theScientificName' ,
         'tradeName',
@@ -25,20 +29,35 @@ class MedicineController extends Controller
         'quantity',
         'validity',
         'price',
-        ]);
-        return $medicine;
-    }
+    ]);
     
-    public function insert(Request $request){
+    return $medicine;
+}
+
+public function insert(Request $request){
+    $request['user_id'] = Auth::guard('api')->user()->id;
+    $validator = Validator::make($request->all() , [
+        'theScientificName' => 'required',
+        'tradeName' => 'required',
+        'category' => 'required',
+        'theManufactureCompany' => 'required',
+        'quantity' => 'required',
+        'validity' => 'required',
+        'price' => 'required',
+    ]);
+    if($validator->fails()){
+        return response()->json($validator->errors(), 422);
+    }
     $medicine = Medicine::Create($request->all());
     return response()->json([
-    'message' => 'inserted successfully',
-    'medicine ' => $medicine
+        'message' => 'inserted successfully',
+        'medicine ' => $medicine
     ]);
     }
     
     public function showCategory(Request $request){
-    $categories = category::create($request->all());
+   // $categories = category::create($request->all());
+    $categories = category::where($request->all());
     foreach ($categories as $category) {
         $medicine = Medicine::where('category' , 'like' , '%'. $category.'%')->get('tradeName');
     }
@@ -70,42 +89,43 @@ class MedicineController extends Controller
     
     public function search(request $request){
         $search=$request->search;
-        $data=Medicine::where('TradeName' , 'like','%'. $search.'%')->get([
-        'theScientificName' ,
-        'tradeName',
-        'category',
-        'theManufactureCompany',
-        'quantity',
-        'validity',
-        'price',
-        ]);
+        $data=Medicine::where('TradeName' , 'like','%'. $search.'%')->orwhere('category' , 'like','%'. $search.'%')->get(['tradeName' , 'category']);
         return response()->json([
             'data' => $data,
             ]);
     }
+    //note: delete % for unique search
+    //note: % is for easy search
     
     
     
     
     
     
-    
+    // want to give the user id to user_id column for this function
     public function order(Request $request)
     {
+    $request['user_id']  = Auth::guard('api')->user()->id;
+    //validation
     $validator = Validator::make($request->all() , [
         'tradeName' => 'required',
         'quantity' => 'required|integer|min:1',
+        'user_id'=>'required'
     ]);
+    
+    //error of validation
     if ($validator->fails()) {
         return response()->json($validator->errors() , 422);
     }
-    $medicine = $request->only('tradeName', 'quantity');
+    
+    
+    $medicine = $request->only('tradeName', 'quantity', 'user_id');
 
    // Check if the required quantity is available in the warehouse
     $warehouse_data = Medicine::where('tradeName', $medicine['tradeName'])->first();
 
     if ($warehouse_data && $warehouse_data->quantity >= $medicine['quantity']) {
-       // if quantity is available, reduce the quantity from the warehouse
+    
         $warehouse_data->decrement('quantity', $medicine['quantity']);
        // Check if there is an existing order for the same tradeName
         $existingOrder = Order::where('tradeName', $medicine['tradeName'])->latest()->first();
@@ -115,7 +135,9 @@ class MedicineController extends Controller
             $existingOrder->increment('quantity', $medicine['quantity']);
         } else {
            // If there isn't an existing order, create a new one
-            Order::create($medicine);
+            Order::create([
+            'data' => $medicine,
+            ]);
         }
     } else if(!$warehouse_data){
        // if quantity is not available, return a response to the pharmacist
@@ -150,6 +172,12 @@ class MedicineController extends Controller
             ]);
         }
     }
+    
+    
+    
+    
+    
+    
     //show order by id one by one or all orders in one time or both
     
     

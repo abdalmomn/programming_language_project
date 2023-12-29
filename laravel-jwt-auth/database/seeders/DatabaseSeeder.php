@@ -20,9 +20,9 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
             UserSeeder::class,
-            medicineSeeder::class,
-            statusSeeder::class,
-            CategoriesSeeder::class
+            // medicineSeeder::class,
+            // statusSeeder::class,
+            // CategoriesSeeder::class
         ]);
     }
 }

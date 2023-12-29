@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -17,11 +18,16 @@ use Illuminate\Support\Facades\Auth;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
 Route::prefix('admin')->middleware(['auth:api' , 'isAdmin'])->group(function($router){
-    Route::post('/admin_login',[AuthController::class,'warehouse_login']);
+    Route::post('/admin_login',[AuthController::class,'warehouse_login'])->middleware('isAdmin');
     Route::post('/insert' , [MedicineController::class , 'insert']); 
     Route::get('/info' , [AuthController::class , 'showUserInformation']); 
+    Route::post('/create', [CategoryController::class, 'create']);
+    Route::post('/update/{id}', [CategoryController::class, 'update']);
+    Route::delete('/delete/{id}', [CategoryController::class, 'delete']);
+    Route::get('/showMedicines' , [MedicineController::class , 'showMedicines']); 
+    Route::get('/getCategories' , [CategoryController::class , 'index']); 
+    Route::get('/getCatMedicines' , [CategoryController::class , 'medicines']); 
         });
         
         
@@ -30,12 +36,13 @@ Route::prefix('admin')->middleware(['auth:api' , 'isAdmin'])->group(function($ro
             Route::post('/logout', [AuthController::class, 'logout']);
             Route::post('/register', [AuthController::class, 'pharmacy_register']);
             Route::get('/info' , [AuthController::class , 'showUserInformation']); 
+            Route::get('/showMedicines' , [MedicineController::class , 'showMedicines']); 
+            Route::get('/getCategories' , [CategoryController::class , 'index']); 
+            Route::get('/getCatMedicines' , [CategoryController::class , 'medicines']); 
         });
         
         Route::get('/details' , [MedicineController::class , 'details']); 
         Route::get('/search' , [MedicineController::class , 'search']); 
-        Route::get('/showMedicines' , [MedicineController::class , 'showMedicines']); 
-        Route::post('/showCategory' , [MedicineController::class , 'showCategory']); 
         Route::post('/order' , [MedicineController::class , 'order']); 
         Route::get('/showOrder/{id}' , [MedicineController::class , 'showOrderInCart']); 
         Route::put('/updateOrderStatus/{id}/status/{status}', [MedicineController::class , 'updateOrderStatusAdmin'])->where(['status' => 'pending|processing|completed|cancelled']);

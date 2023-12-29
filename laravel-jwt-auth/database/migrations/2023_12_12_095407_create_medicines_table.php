@@ -20,6 +20,7 @@ return new class extends Migration
             $table -> integer('quantity');
             $table -> integer('validity');
             $table -> integer('price');
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

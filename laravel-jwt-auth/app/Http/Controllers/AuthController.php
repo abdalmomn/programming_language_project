@@ -101,4 +101,7 @@ class AuthController extends Controller
         'phone' => auth()->user()->phone,
         ]);
     }
+
+
+    // $user->my_orders;
 }
