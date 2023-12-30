@@ -28,22 +28,24 @@ Route::prefix('admin')->middleware(['auth:api' , 'isAdmin'])->group(function($ro
     Route::get('/showMedicines' , [MedicineController::class , 'showMedicines']); 
     Route::get('/getCategories' , [CategoryController::class , 'index']); 
     Route::get('/getCatMedicines' , [CategoryController::class , 'medicines']); 
-        });
-        
-        
-        Route::prefix('auth')->middleware(['api'])->group(function($router){
-            Route::post('/login', [AuthController::class, 'pharmacy_login']);
+    Route::get('/details' , [MedicineController::class , 'details']); 
+    Route::get('/search' , [MedicineController::class , 'search']); 
+});
+
+
+Route::prefix('auth')->middleware(['api'])->group(function($router){
+    Route::post('/login', [AuthController::class, 'pharmacy_login']);
             Route::post('/logout', [AuthController::class, 'logout']);
             Route::post('/register', [AuthController::class, 'pharmacy_register']);
             Route::get('/info' , [AuthController::class , 'showUserInformation']); 
             Route::get('/showMedicines' , [MedicineController::class , 'showMedicines']); 
             Route::get('/getCategories' , [CategoryController::class , 'index']); 
             Route::get('/getCatMedicines' , [CategoryController::class , 'medicines']); 
+            Route::post('/order' , [MedicineController::class , 'order']); 
+            Route::get('/details' , [MedicineController::class , 'details']); 
+            Route::get('/search' , [MedicineController::class , 'search']); 
         });
         
-        Route::get('/details' , [MedicineController::class , 'details']); 
-        Route::get('/search' , [MedicineController::class , 'search']); 
-        Route::post('/order' , [MedicineController::class , 'order']); 
-        Route::get('/showOrder/{id}' , [MedicineController::class , 'showOrderInCart']); 
-        Route::put('/updateOrderStatus/{id}/status/{status}', [MedicineController::class , 'updateOrderStatusAdmin'])->where(['status' => 'pending|processing|completed|cancelled']);
-        Route::put('/updateOrderPayment/{id}/status/{status}', [MedicineController::class , 'updatePaymentStatusAdmin'])->where(['status' => 'paid|unpaid']);
+        Route::get('/showOrder' , [MedicineController::class , 'viewOrders']); 
+        Route::post('/updateOrderStatus/{id}', [MedicineController::class , 'updateOrderStatus']);
+        Route::post('/updateOrderPaymentStatus/{id}', [MedicineController::class , 'updateOrderPaymentStatus']);

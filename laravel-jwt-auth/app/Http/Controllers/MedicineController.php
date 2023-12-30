@@ -55,24 +55,7 @@ public function insert(Request $request){
     ]);
     }
     
-    public function showCategory(Request $request){
-   // $categories = category::create($request->all());
-    $categories = category::where($request->all());
-    foreach ($categories as $category) {
-        $medicine = Medicine::where('category' , 'like' , '%'. $category.'%')->get('tradeName');
-    }
-        return response()->json([
-            'data' => [$categories ,$medicine],
-        ]);
-    }
     
-    // public function showCategory(Request $request){
-    //     $med = new Medicine();
-    //     $medicine = Medicine::where('category' , 'like' , 'ادوية ضغط الدم')->get('tradeName');
-    //     return response()->json([
-    //     'data' => $medicine
-    //     ]);
-    // }
     public function details( request $request){
     $det=Medicine::where('id',$request->id)->get([
         'theScientificName' ,
@@ -85,8 +68,6 @@ public function insert(Request $request){
     ]);
     return $det;
     }
-    
-    
     public function search(request $request){
         $search=$request->search;
         $data=Medicine::where('TradeName' , 'like','%'. $search.'%')->orwhere('category' , 'like','%'. $search.'%')->get(['tradeName' , 'category']);
@@ -94,53 +75,40 @@ public function insert(Request $request){
             'data' => $data,
             ]);
     }
-    //note: delete % for unique search
-    //note: % is for easy search
     
-    
-    
-    
-    
-    
-    // want to give the user id to user_id column for this function
     public function order(Request $request)
     {
-    $request['user_id']  = Auth::guard('api')->user()->id;
-    //validation
+    $userId = Auth::guard('api')->user()->id;
+
     $validator = Validator::make($request->all() , [
         'tradeName' => 'required',
         'quantity' => 'required|integer|min:1',
-        'user_id'=>'required'
-    ]);
+        ]);
     
-    //error of validation
     if ($validator->fails()) {
         return response()->json($validator->errors() , 422);
     }
     
     
-    $medicine = $request->only('tradeName', 'quantity', 'user_id');
+    $medicine = $request->only(['tradeName', 'quantity']);
 
-   // Check if the required quantity is available in the warehouse
     $warehouse_data = Medicine::where('tradeName', $medicine['tradeName'])->first();
 
     if ($warehouse_data && $warehouse_data->quantity >= $medicine['quantity']) {
     
         $warehouse_data->decrement('quantity', $medicine['quantity']);
-       // Check if there is an existing order for the same tradeName
         $existingOrder = Order::where('tradeName', $medicine['tradeName'])->latest()->first();
 
         if ($existingOrder) {
-           // If there is an existing order, increment its quantity
             $existingOrder->increment('quantity', $medicine['quantity']);
         } else {
-           // If there isn't an existing order, create a new one
             Order::create([
-            'data' => $medicine,
-            ]);
+            'tradeName' => $medicine['tradeName'],
+            'quantity' => $medicine['quantity'],
+            'user_id' => $userId, 
+    ]);
         }
     } else if(!$warehouse_data){
-       // if quantity is not available, return a response to the pharmacist
         return response()->json([
             'error' => 'The medicine of ' . $medicine['tradeName'] . ' is not available in the warehouse.'
         ]);
@@ -154,82 +122,63 @@ public function insert(Request $request){
         'success' => 'order has been added to cart'
     ]);
 }
-
     
-    public function showOrderInCart($id){
-        $order = Order::select([
-        'tradeName',
+    public function viewOrders()
+    {
+    $userId = Auth::guard('api')->user()->id;
+    
+    $orders = Order::where('user_id', $userId)->get(['tradeName',
         'quantity',
-        'status'
-        ])->find($id);
-        if ($order) {
+        'status',
+        'purchase'
+        ]);
+        if ($orders) {
             return response()->json([
-            "data" => $order
+            "data" => $orders
             ]);
-        }else {
+            }else {
             return response()->json([
             "message" => "the order is not found in our data",  
             ]);
         }
-    }
-    
-    
-    
-    
-    
-    
-    //show order by id one by one or all orders in one time or both
-    
-    
-    
-    
-//     public function updateOrderStatus($id, $status){
-//     $order = Order::find($id);
-//     if ($order) {
-//         $order->status = $status;
-//         $order->save();
-//         return response()->json([
-//             "message" => "the order status has been updated",  
-//         ]);
-//     }else {
-//         return response()->json([
-//             "message" => "the order is not found in our data",  
-//         ]);
-//     }
-// }
-
-    public function updateOrderStatusAdmin($id, $status){
-    $order = Order::find($id);
-    if ($order) {
-        $order->status = $status;
-        $order->save();
-        return response()->json([
-            "message" => "the order status has been updated by admin",  
-        ]);
-    }else {
-        return response()->json([
-            "message" => "the order is not found in our data",  
-        ]);
-    }
 }
-    public function updatePaymentStatusAdmin($id, $status){
-    $order = Order::find($id);
-    if ($order) {
-        $order->purchase = $status;
-        $order->save();
-        return response()->json([
-            "message" => "the order status has been updated by admin",  
-        ]);
-    }else {
-        return response()->json([
-            "message" => "the order is not found in our data",  
-        ]);
+    public function updateOrderStatus(Request $request, $orderId)
+    {   
+    $userId = Auth::guard('api')->user()->id;
+    $order = Order::find($orderId);
+    
+    if (!$order) {
+        return response()->json(['error' => 'Order not found'], 404);
     }
+    $validator = Validator::make($request->all(), [
+        'status' => 'required|in:' . implode(',', [Order::STATUS_SENT, Order::STATUS_RECEIVED]),
+    ]);
+    if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+    }
+    $order->update(['status' => $request->input('status')]);
+    
+    return response()->json(['success' => 'Order status updated successfully']);
 }
 
-    public function refreshData(){
-    $orders = Order::all();
-    return $orders;
+
+    public function updateOrderPaymentStatus(Request $request, $orderId)
+{
+    $userId = Auth::guard('api')->user()->id;
+    $order = Order::find($orderId);
+    
+    if (!$order) {
+        return response()->json(['error' => 'Order not found'], 404);
+    }
+    $validator = Validator::make($request->all(), [
+        'payment_status' => 'required|in:' . implode(',', [Order::PAYMENT_UNPAID, Order::PAYMENT_PAID]),
+    ]);
+    if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+    }
+    $order->update(['payment_status' => $request->input('payment_status')]);
+
+    return response()->json(['success' => 'payment status updated successfully']);
 }
-    //idea: set 2 method ,one method for every status for admin and I already have a default status
+
 }

@@ -7,16 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    use HasFactory;
-    // protected $table = 'orders';
-    // protected $primaryKey = 'id';
+    const STATUS_IN_PREPARATION = 'in_preparation';
+    const STATUS_SENT = 'sent';
+    const STATUS_RECEIVED = 'received';
+    const PAYMENT_UNPAID = 'unpaid';
+    const PAYMENT_PAID = 'paid';
     
-    protected $fillable = ['tradeName' , 'quantity' , 'user_id'];
+    protected $fillable = ['tradeName' , 'quantity' , 'user_id', 'status' , 'payment_status'];
     
     // public function orderStatus(){
     //     return $this->hasMany(orderStatus::class);
     // }
-    public function User(){
-    return $this->belongsTo(User::class);
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

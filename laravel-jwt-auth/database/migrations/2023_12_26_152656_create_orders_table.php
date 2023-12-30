@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table -> string('tradeName');
             $table -> string('quantity');
-            $table -> string('status')->default('in processing');
-            $table -> string('purchase')->default('Unpaid');
+            $table -> string('status')->default('in_preparation');
+            $table -> string('payment_status')->default('Unpaid');
             $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
         });
