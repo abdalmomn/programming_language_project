@@ -31,6 +31,8 @@ class AuthController extends Controller
     }
     
     public function warehouse_login(Request $request){
+    $userRole = Auth::guard('api')->user()->role;
+
     $validator = Validator::make($request->all() , [
         'phone' => 'required|digits:10|starts_with:09',
         'password' => 'required|string|between:8,20',

@@ -11,12 +11,8 @@ use Ramsey\Uuid\Type\Integer;
 
 class User extends Authenticatable implements JWTSubject
 {
-
     use HasFactory, Notifiable;
     
-    public function role(){
-        $this -> belongsTo(role::class);
-    }
     
     /**
      * The attributes that are mass assignable.
@@ -67,11 +63,14 @@ class User extends Authenticatable implements JWTSubject
     public function medicines(){
         return $this->hasMany(Medicine::class);
     }
-
+    
     public function orders(){
         return $this->hasMany(Order::class);
     }
+    public function role(){
+        return $this->hasMany(role::class);
+    }
     
-
+    
     
 }

@@ -20,31 +20,12 @@ class isAdmin
     
     public function handle(Request $request, Closure $next): Response
     {
-    
-        
         if(Auth::check() && Auth::user()->role == 'admin'){
             return $next($request);
         }
         else {
-        return response()->json(['message' => 'you can not access']);
-    }
-    
-        return $next($request);
+            return response()->json(['message' => 'you can not access'] ,403);
+        }
+        
 }
-
-// public function handle($request, Closure $next, ...$roles)
-// {
-//     if (!Auth::check()) {
-//         return response('hate you');
-//     }
-
-
-//     foreach ($roles as $role) {
-//         if (Auth::user()->hasRole) {
-//             return $next($request);
-//         }
-//     }
-
-//         return response('fuck you');
-// }
 }

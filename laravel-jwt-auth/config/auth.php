@@ -21,6 +21,10 @@ return [
         'guard' => 'api',
         'passwords' => 'users',
     ],
+    'defaults' => [
+        'guard' => 'admin_api',
+        'passwords' => 'admins',
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -49,6 +53,7 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        
     ],
 
     /*
