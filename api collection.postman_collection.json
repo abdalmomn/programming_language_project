@@ -1,0 +1,2903 @@
+{
+	"info": {
+		"_postman_id": "648f587c-3830-455f-b71a-f98e90e6aa7b",
+		"name": "api collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31009317"
+	},
+	"item": [
+		{
+			"name": "authentication",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "phone",
+											"value": "0950513111",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "12345678",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/login",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "login_successfully",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "phone",
+													"value": "0933194861",
+													"type": "text"
+												},
+												{
+													"key": "password",
+													"value": "12345678",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/auth/login",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"auth",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 16:35:13 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 16:35:13 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"access _token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MDM4Njc3MTMsImV4cCI6MTcwMzg3MTMxMywibmJmIjoxNzAzODY3NzEzLCJqdGkiOiJ5ZUVNRUhQanY0ZWp3blNIIiwic3ViIjoiNiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.jZPQNcrp-4ry5fQch1ZqycANhmNzjzojaoYrjyZ-bvE\",\n    \"token_type\": \"bearer\",\n    \"expired_in\": 3600,\n    \"user\": {\n        \"id\": 6,\n        \"name\": \"jehad\",\n        \"phone\": \"0933194861\",\n        \"role\": \"user\",\n        \"created_at\": \"2023-12-29T16:32:22.000000Z\",\n        \"updated_at\": \"2023-12-29T16:32:22.000000Z\"\n    }\n}"
+								},
+								{
+									"name": "validation_error",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "phone",
+													"value": "0933194861",
+													"type": "text"
+												},
+												{
+													"key": "password",
+													"value": "12345678",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/auth/login",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"auth",
+												"login"
+											]
+										}
+									},
+									"status": "Unprocessable Content",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 16:35:52 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 16:35:52 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "58"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"password\": [\n        \"The password field is required.\"\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "user_register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "mohamad nezar",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "0953230952",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "12345678",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/pharmacy_register",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"pharmacy_register"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "register_successfully",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "jehad",
+													"type": "text"
+												},
+												{
+													"key": "phone",
+													"value": "0933194861",
+													"type": "text"
+												},
+												{
+													"key": "password",
+													"value": "12345678",
+													"type": "text"
+												},
+												{
+													"key": "password_confirmation",
+													"value": "12345678",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/auth/register",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"auth",
+												"register"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 16:32:22 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 16:32:22 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"name\": \"jehad\",\n        \"phone\": \"0933194861\",\n        \"updated_at\": \"2023-12-29T16:32:22.000000Z\",\n        \"created_at\": \"2023-12-29T16:32:22.000000Z\",\n        \"id\": 6\n    },\n    \"message\": \"user has been registered successfully!\"\n}"
+								},
+								{
+									"name": "the_phone_is_already_token",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "jehad",
+													"type": "text"
+												},
+												{
+													"key": "phone",
+													"value": "0933194861",
+													"type": "text"
+												},
+												{
+													"key": "password",
+													"value": "12345678",
+													"type": "text"
+												},
+												{
+													"key": "password_confirmation",
+													"value": "12345678",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/auth/register",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"auth",
+												"register"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 16:33:33 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 16:33:33 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "\"{\\\"phone\\\":[\\\"The phone has already been taken.\\\"]}\""
+								},
+								{
+									"name": "validation_errors",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "jehad",
+													"type": "text"
+												},
+												{
+													"key": "phone",
+													"value": "0933194862",
+													"type": "text"
+												},
+												{
+													"key": "password",
+													"value": "12345678",
+													"type": "text"
+												},
+												{
+													"key": "password_confirmation",
+													"value": "12345678",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/auth/register",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"auth",
+												"register"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 16:34:25 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 16:34:25 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "57"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "\"{\\\"password\\\":[\\\"The password field confirmation does not match.\\\"]}\""
+								}
+							]
+						},
+						{
+							"name": "logout",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzAzMDA5OTkzLCJleHAiOjE3MDMwMTM1OTMsIm5iZiI6MTcwMzAwOTk5MywianRpIjoiSFNMZTIydE9YUFlaT3B5eSIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.3FCOJvrGy4AlwGRVZyb4C9ai4QQBrce6_pYTHsf-xMA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/logout",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"logout"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "logout_successfully_with_only_token",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/auth/logout",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"auth",
+												"logout"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 16:36:45 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 16:36:45 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"user logged out successfully!\"\n}"
+								},
+								{
+									"name": "the_user_is_not_logeed_in_to_logout",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/auth/logout",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"auth",
+												"logout"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 16:37:32 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 16:37:32 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+								}
+							]
+						},
+						{
+							"name": "search",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "search",
+											"value": "تريبتيزول",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/search?search=سيبراميل",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"search"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "سيبراميل"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "search_by_name",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/search?search=سيتامول",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"search"
+											],
+											"query": [
+												{
+													"key": "search",
+													"value": "سيتامول"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 16:45:59 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 16:45:59 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "58"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"tradeName\": \"سيتامول\"\n        }\n    ]\n}"
+								},
+								{
+									"name": "search_by_category",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/search?search=مسكنات",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"search"
+											],
+											"query": [
+												{
+													"key": "search",
+													"value": "مسكنات"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 16:47:26 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 16:47:26 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "58"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"tradeName\": \"سيتامول\",\n            \"category\": \"مسكنات\"\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "details",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/details?id=2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"details"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "show_midicine_details",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/details?id=7",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"details"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "7"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 16:49:12 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 16:49:12 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"theScientificName\": \"سيتالوبرام\",\n        \"tradeName\": \"سيتامول\",\n        \"category\": \"مسكنات\",\n        \"theManufactureCompany\": \"فارما\",\n        \"quantity\": 100,\n        \"validity\": 100,\n        \"price\": 20\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "showMedicine",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/showMedicines",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"showMedicines"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "show_medicine_in_warehouse_table",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/admin/showMedicines",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"admin",
+												"showMedicines"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 16:58:59 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 16:58:59 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 1,\n        \"theScientificName\": \"سيتالوبرام\",\n        \"tradeName\": \"omar4\",\n        \"category\": \"يوسف\",\n        \"theManufactureCompany\": \"فارما\",\n        \"quantity\": 100,\n        \"validity\": 100,\n        \"price\": 20\n    },\n    {\n        \"id\": 2,\n        \"theScientificName\": \"سيتالوبرام\",\n        \"tradeName\": \"omar1\",\n        \"category\": \"يوسف1\",\n        \"theManufactureCompany\": \"فارما\",\n        \"quantity\": 56,\n        \"validity\": 100,\n        \"price\": 20\n    },\n    {\n        \"id\": 3,\n        \"theScientificName\": \"سيتالوبرام\",\n        \"tradeName\": \"omar2\",\n        \"category\": \"يوسف2\",\n        \"theManufactureCompany\": \"فارما\",\n        \"quantity\": 100,\n        \"validity\": 100,\n        \"price\": 20\n    },\n    {\n        \"id\": 4,\n        \"theScientificName\": \"سيتالوبرام\",\n        \"tradeName\": \"omar3\",\n        \"category\": \"يوسف2\",\n        \"theManufactureCompany\": \"فارما\",\n        \"quantity\": 100,\n        \"validity\": 100,\n        \"price\": 20\n    },\n    {\n        \"id\": 5,\n        \"theScientificName\": \"سيتالوبرام\",\n        \"tradeName\": \"omar4\",\n        \"category\": \"يوسف1\",\n        \"theManufactureCompany\": \"فارما\",\n        \"quantity\": 100,\n        \"validity\": 100,\n        \"price\": 20\n    },\n    {\n        \"id\": 6,\n        \"theScientificName\": \"سيتالوبرام\",\n        \"tradeName\": \"omar5\",\n        \"category\": \"يوسف\",\n        \"theManufactureCompany\": \"فارما\",\n        \"quantity\": 100,\n        \"validity\": 100,\n        \"price\": 20\n    },\n    {\n        \"id\": 7,\n        \"theScientificName\": \"سيتالوبرام\",\n        \"tradeName\": \"سيتامول\",\n        \"category\": \"مسكنات\",\n        \"theManufactureCompany\": \"فارما\",\n        \"quantity\": 100,\n        \"validity\": 100,\n        \"price\": 20\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "UserInfo",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": [
+								{
+									"name": "user_information",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/auth/info",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"auth",
+												"info"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 17:01:22 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 17:01:22 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"name\": \"jehad\",\n    \"phone\": \"0933194861\"\n}"
+								}
+							]
+						},
+						{
+							"name": "getCategoryMedicines",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": [
+								{
+									"name": "getCategoryMedicines",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/auth/get-cat-medicines?cat_name=مسكنات",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"auth",
+												"get-cat-medicines"
+											],
+											"query": [
+												{
+													"key": "cat_name",
+													"value": "مسكنات"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 17:17:40 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 17:17:40 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"tradeName\": \"هايامول\"\n    },\n    {\n        \"tradeName\": \"سيتامول\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "getCategories",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": [
+								{
+									"name": "getCategories",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/auth/getCategories",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"auth",
+												"getCategories"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 17:20:46 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 17:20:46 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"categories\": \"ادوية السكر\"\n    },\n    {\n        \"categories\": \"ادوية قلب\"\n    },\n    {\n        \"categories\": \"مسكنات\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "showUserOrder",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MDM5NDI4MzgsImV4cCI6MTcwMzk0NjQzOCwibmJmIjoxNzAzOTQyODM4LCJqdGkiOiJDRlJjZXNQbnZ2cGxVTWNJIiwic3ViIjoiMyIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.2NBN3uH4A9xUfgnjEK1CjVZ5XIibtxVykjnqckTk3ik",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/showOrder",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"showOrder"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "successShowOrder",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/auth/showOrder/3/1",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"auth",
+												"showOrder",
+												"3",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 02 Jan 2024 19:56:28 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 02 Jan 2024 19:56:28 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"order_details\": {\n        \"user_id\": 3,\n        \"payment_status\": \"sent\",\n        \"order_status\": \"paid\"\n    },\n    \"medicines\": [\n        {\n            \"id\": 3,\n            \"theScientificName\": \"سيتالوبرام\",\n            \"tradeName\": \"انتي سبا\",\n            \"category\": \"تربتوفين\",\n            \"theManufactureCompany\": \"فارما\",\n            \"quantity\": \"25\",\n            \"validity\": 100,\n            \"price\": 20,\n            \"user_id\": 1,\n            \"created_at\": \"2024-01-02T18:26:35.000000Z\",\n            \"updated_at\": \"2024-01-02T19:54:35.000000Z\"\n        },\n        {\n            \"id\": 4,\n            \"theScientificName\": \"سيتالوبرام\",\n            \"tradeName\": \"هستامين\",\n            \"category\": \"تربتوفين\",\n            \"theManufactureCompany\": \"فارما\",\n            \"quantity\": \"26\",\n            \"validity\": 100,\n            \"price\": 20,\n            \"user_id\": 1,\n            \"created_at\": \"2024-01-02T18:26:44.000000Z\",\n            \"updated_at\": \"2024-01-02T19:54:35.000000Z\"\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MDM5NDY1MTgsImV4cCI6MTcwMzk1MDExOCwibmJmIjoxNzAzOTQ2NTE4LCJqdGkiOiJkRG14MzVHSjR1T2FHSlBiIiwic3ViIjoiMyIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.pIuuWXfwV6fDaCWlpXFNi2etpZUAjN7g2HYN88m2JSQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "tradeName",
+											"value": "سيتامول",
+											"type": "text"
+										},
+										{
+											"key": "quantity",
+											"value": "23",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/auth/order",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"auth",
+										"order"
+									],
+									"query": [
+										{
+											"key": "tradeName",
+											"value": "نيو ايد",
+											"disabled": true
+										},
+										{
+											"key": "quantity",
+											"value": "11",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "orderedSuccessfully",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"data\" :[\r\n        {\r\n            \"medicine_id\" :3,\r\n            \"quantity\" : 25\r\n        },\r\n        {\r\n            \"medicine_id\" :4,\r\n            \"quantity\" : 26   \r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/auth/order?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MDQyMjUyNTUsImV4cCI6MTcwNDIyODg1NSwibmJmIjoxNzA0MjI1MjU1LCJqdGkiOiJsbTJ6b1drdDJSUmxHZkZTIiwic3ViIjoiMyIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.plUGd62epucPFX3lCHzSh4fCni30lYNvJShl-Tlb-pw",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"auth",
+												"order"
+											],
+											"query": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MDQyMjUyNTUsImV4cCI6MTcwNDIyODg1NSwibmJmIjoxNzA0MjI1MjU1LCJqdGkiOiJsbTJ6b1drdDJSUmxHZkZTIiwic3ViIjoiMyIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.plUGd62epucPFX3lCHzSh4fCni30lYNvJShl-Tlb-pw"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 02 Jan 2024 19:54:35 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 02 Jan 2024 19:54:35 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Done\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "createCategory",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "categories",
+											"value": "ادوية معدة",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/admin/create",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"admin",
+										"create"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "category_create",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "categories",
+													"value": "مسكنات",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/admin/create",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"admin",
+												"create"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 17:03:34 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 17:03:34 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "58"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"categories\": \"مسكنات\",\n    \"updated_at\": \"2023-12-29T17:03:34.000000Z\",\n    \"created_at\": \"2023-12-29T17:03:34.000000Z\",\n    \"id\": 5\n}"
+								}
+							]
+						},
+						{
+							"name": "insert_medicines",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MDM4NjgwNjAsImV4cCI6MTcwMzg3MTY2MCwibmJmIjoxNzAzODY4MDYwLCJqdGkiOiI4U3lMRGpCMUJoY1NobG42Iiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.1giZEWkUG1mQYvyQ-57_bkvh6SPRci8nhG877HZV3e4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "theScientificName",
+											"value": "سيتالوبرام",
+											"type": "text"
+										},
+										{
+											"key": "tradeName",
+											"value": "سيتامول",
+											"type": "text"
+										},
+										{
+											"key": "category",
+											"value": "مسكنات",
+											"type": "text"
+										},
+										{
+											"key": "theManufactureCompany",
+											"value": "فارما",
+											"type": "text"
+										},
+										{
+											"key": "quantity",
+											"value": "100",
+											"type": "text"
+										},
+										{
+											"key": "validity",
+											"value": "100",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "20",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/admin/insert",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"admin",
+										"insert"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "insert_medicines_successfully",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "theScientificName",
+													"value": "سيتالوبرام",
+													"type": "text"
+												},
+												{
+													"key": "tradeName",
+													"value": "هايامول",
+													"type": "text"
+												},
+												{
+													"key": "category",
+													"value": "مسكنات",
+													"type": "text"
+												},
+												{
+													"key": "theManufactureCompany",
+													"value": "فارما",
+													"type": "text"
+												},
+												{
+													"key": "quantity",
+													"value": "100",
+													"type": "text"
+												},
+												{
+													"key": "validity",
+													"value": "100",
+													"type": "text"
+												},
+												{
+													"key": "price",
+													"value": "20",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/admin/insert",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"admin",
+												"insert"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 17:05:43 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 17:05:43 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "58"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"inserted successfully\",\n    \"medicine \": {\n        \"theScientificName\": \"سيتالوبرام\",\n        \"tradeName\": \"هايامول\",\n        \"category\": \"مسكنات\",\n        \"theManufactureCompany\": \"فارما\",\n        \"quantity\": \"100\",\n        \"validity\": \"100\",\n        \"price\": \"20\",\n        \"user_id\": 1,\n        \"updated_at\": \"2023-12-29T17:05:43.000000Z\",\n        \"created_at\": \"2023-12-29T17:05:43.000000Z\",\n        \"id\": 8\n    }\n}"
+								},
+								{
+									"name": "validation_error",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "theScientificName",
+													"value": "سيتالوبرام",
+													"type": "text"
+												},
+												{
+													"key": "tradeName",
+													"value": "هايامول",
+													"type": "text"
+												},
+												{
+													"key": "category",
+													"value": "مسكنات",
+													"type": "text"
+												},
+												{
+													"key": "theManufactureCompany",
+													"value": "فارما",
+													"type": "text"
+												},
+												{
+													"key": "quantity",
+													"value": "100",
+													"type": "text"
+												},
+												{
+													"key": "validity",
+													"value": "100",
+													"type": "text"
+												},
+												{
+													"key": "price",
+													"value": "20",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/admin/insert",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"admin",
+												"insert"
+											]
+										}
+									},
+									"status": "Unprocessable Content",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 17:09:52 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 17:09:52 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"price\": [\n        \"The price field is required.\"\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "showMedicines",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/showMedicines",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"showMedicines"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "show_medicines",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/admin/showMedicines",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"admin",
+												"showMedicines"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 17:10:49 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 17:10:49 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "58"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 1,\n        \"theScientificName\": \"سيتالوبرام\",\n        \"tradeName\": \"omar4\",\n        \"category\": \"يوسف\",\n        \"theManufactureCompany\": \"فارما\",\n        \"quantity\": 100,\n        \"validity\": 100,\n        \"price\": 20\n    },\n    {\n        \"id\": 2,\n        \"theScientificName\": \"سيتالوبرام\",\n        \"tradeName\": \"omar1\",\n        \"category\": \"يوسف1\",\n        \"theManufactureCompany\": \"فارما\",\n        \"quantity\": 56,\n        \"validity\": 100,\n        \"price\": 20\n    },\n    {\n        \"id\": 3,\n        \"theScientificName\": \"سيتالوبرام\",\n        \"tradeName\": \"omar2\",\n        \"category\": \"يوسف2\",\n        \"theManufactureCompany\": \"فارما\",\n        \"quantity\": 100,\n        \"validity\": 100,\n        \"price\": 20\n    },\n    {\n        \"id\": 4,\n        \"theScientificName\": \"سيتالوبرام\",\n        \"tradeName\": \"omar3\",\n        \"category\": \"يوسف2\",\n        \"theManufactureCompany\": \"فارما\",\n        \"quantity\": 100,\n        \"validity\": 100,\n        \"price\": 20\n    },\n    {\n        \"id\": 5,\n        \"theScientificName\": \"سيتالوبرام\",\n        \"tradeName\": \"omar4\",\n        \"category\": \"يوسف1\",\n        \"theManufactureCompany\": \"فارما\",\n        \"quantity\": 100,\n        \"validity\": 100,\n        \"price\": 20\n    },\n    {\n        \"id\": 6,\n        \"theScientificName\": \"سيتالوبرام\",\n        \"tradeName\": \"omar5\",\n        \"category\": \"يوسف\",\n        \"theManufactureCompany\": \"فارما\",\n        \"quantity\": 100,\n        \"validity\": 100,\n        \"price\": 20\n    },\n    {\n        \"id\": 7,\n        \"theScientificName\": \"سيتالوبرام\",\n        \"tradeName\": \"سيتامول\",\n        \"category\": \"مسكنات\",\n        \"theManufactureCompany\": \"فارما\",\n        \"quantity\": 100,\n        \"validity\": 100,\n        \"price\": 20\n    },\n    {\n        \"id\": 8,\n        \"theScientificName\": \"سيتالوبرام\",\n        \"tradeName\": \"هايامول\",\n        \"category\": \"مسكنات\",\n        \"theManufactureCompany\": \"فارما\",\n        \"quantity\": 100,\n        \"validity\": 100,\n        \"price\": 20\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "adminInfo",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": [
+								{
+									"name": "admin_information",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/admin/info",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"admin",
+												"info"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 17:10:59 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 17:10:59 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"name\": \"pharma \",\n    \"phone\": \"0950513115\"\n}"
+								}
+							]
+						},
+						{
+							"name": "getCategoryMedicines",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/admin/get-cat-medicines?cat_name=مسكنات",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"admin",
+										"get-cat-medicines"
+									],
+									"query": [
+										{
+											"key": "cat_name",
+											"value": "مسكنات"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "getCategoryMedicines",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/auth/get-cat-medicines?cat_name=مسكنات",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"auth",
+												"get-cat-medicines"
+											],
+											"query": [
+												{
+													"key": "cat_name",
+													"value": "مسكنات"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 17:18:04 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 17:18:04 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "58"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"tradeName\": \"هايامول\"\n    },\n    {\n        \"tradeName\": \"سيتامول\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "getCategories",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": [
+								{
+									"name": "get_categories",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/admin/getCategories",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"admin",
+												"getCategories"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 17:22:07 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 29 Dec 2023 17:22:07 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"categories\": \"ادوية السكر\"\n    },\n    {\n        \"categories\": \"ادوية قلب\"\n    },\n    {\n        \"categories\": \"مسكنات\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "showAdminOrder",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MDM5NDI4MzgsImV4cCI6MTcwMzk0NjQzOCwibmJmIjoxNzAzOTQyODM4LCJqdGkiOiJDRlJjZXNQbnZ2cGxVTWNJIiwic3ViIjoiMyIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.2NBN3uH4A9xUfgnjEK1CjVZ5XIibtxVykjnqckTk3ik",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/showOrder",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"showOrder"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "showOrderToAdmin",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/admin/showOrder?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MDQyMjAwOTEsImV4cCI6MTcwNDIyMzY5MSwibmJmIjoxNzA0MjIwMDkxLCJqdGkiOiJHVmRTczRwNDBYbzhWeFUxIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.JAY9Wluv6RJ_fYvmO2eIO4_pyg8qbBBFvjBElV9_Vf0",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"admin",
+												"showOrder"
+											],
+											"query": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MDQyMjAwOTEsImV4cCI6MTcwNDIyMzY5MSwibmJmIjoxNzA0MjIwMDkxLCJqdGkiOiJHVmRTczRwNDBYbzhWeFUxIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.JAY9Wluv6RJ_fYvmO2eIO4_pyg8qbBBFvjBElV9_Vf0"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 02 Jan 2024 18:28:23 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 02 Jan 2024 18:28:23 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 1,\n        \"user_id\": 3,\n        \"order_status\": \"in_preparation\",\n        \"payment_status\": \"Unpaid\",\n        \"created_at\": \"2024-01-02T18:27:13.000000Z\",\n        \"updated_at\": \"2024-01-02T18:27:13.000000Z\",\n        \"medicines\": [\n            {\n                \"id\": 3,\n                \"theScientificName\": \"سيتالوبرام\",\n                \"tradeName\": \"انتي سبا\",\n                \"category\": \"تربتوفين\",\n                \"theManufactureCompany\": \"فارما\",\n                \"quantity\": 100,\n                \"validity\": 100,\n                \"price\": 20,\n                \"user_id\": 1,\n                \"created_at\": \"2024-01-02T18:26:35.000000Z\",\n                \"updated_at\": \"2024-01-02T18:26:35.000000Z\",\n                \"pivot\": {\n                    \"order_id\": 1,\n                    \"medicine_id\": 3\n                }\n            },\n            {\n                \"id\": 4,\n                \"theScientificName\": \"سيتالوبرام\",\n                \"tradeName\": \"هستامين\",\n                \"category\": \"تربتوفين\",\n                \"theManufactureCompany\": \"فارما\",\n                \"quantity\": 100,\n                \"validity\": 100,\n                \"price\": 20,\n                \"user_id\": 1,\n                \"created_at\": \"2024-01-02T18:26:44.000000Z\",\n                \"updated_at\": \"2024-01-02T18:26:44.000000Z\",\n                \"pivot\": {\n                    \"order_id\": 1,\n                    \"medicine_id\": 4\n                }\n            }\n        ]\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "updateOrderStatus",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "status",
+											"value": "sent",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/updateOrderStatus/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"updateOrderStatus",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "update_Order_Status_and_payment_status",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "payment_status",
+													"value": "sent",
+													"type": "text"
+												},
+												{
+													"key": "order_status",
+													"value": "paid",
+													"type": "text"
+												},
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MDQyMjAwOTEsImV4cCI6MTcwNDIyMzY5MSwibmJmIjoxNzA0MjIwMDkxLCJqdGkiOiJHVmRTczRwNDBYbzhWeFUxIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.JAY9Wluv6RJ_fYvmO2eIO4_pyg8qbBBFvjBElV9_Vf0",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/admin/updateOrderStatus/1",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"admin",
+												"updateOrderStatus",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 02 Jan 2024 18:33:18 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 02 Jan 2024 18:33:18 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "58"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Order status updated successfully\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		}
+	]
+}
